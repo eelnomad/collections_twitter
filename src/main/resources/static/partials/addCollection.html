@@ -1,0 +1,33 @@
+<form>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>New Collection</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="close()">
+                <ng-md-icon icon="close" style="fill: grey"/>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content md-theme="docs-dark">
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container>
+                    <label>Description</label>
+                    <input ng-model="newCollection.desc">
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    </md-content>
+    <md-content class="md-padding" layout="column">
+        <h2 class="md-title">Keywords</h2>
+        <md-chips
+                ng-model="newCollection.keywords"
+                placeholder="Enter Twitter Keywords"
+                secondary-placeholder="Comma separated Keywords"></md-chips>
+    </md-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="submit()">Submit</md-button>
+        <md-button ng-click="close()">Cancel</md-button>
+    </md-dialog-actions>
+</form>
