@@ -1,6 +1,4 @@
-package me.melonade.visualSeries.models;
-
-import org.bson.types.ObjectId;
+package me.melonade.collections.models;
 
 import java.util.List;
 
@@ -9,10 +7,10 @@ import java.util.List;
  * Model of CollectionOrganizer structure.
  */
 public class CollectionOrganizerModel {
-    public String _id;
-    public List<String> keywords;
-    public String desc;
-    public Boolean activeFlag;
+    private String _id;
+    private List<String> keywords;
+    private String desc;
+    private Boolean activeFlag;
 
     public String get_id() {
         return _id;

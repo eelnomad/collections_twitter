@@ -1,8 +1,8 @@
-package me.melonade.visualSeries.mongo;
+package me.melonade.collections.mongo;
 
 import com.mongodb.client.FindIterable;
-import me.melonade.visualSeries.conf.StopWords;
-import me.melonade.visualSeries.exceptions.CollectionException;
+import me.melonade.collections.conf.StopWords;
+import me.melonade.collections.exceptions.CollectionException;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.TokenStream;
@@ -41,21 +41,19 @@ public class Stats {
         Map<String, Integer> wordCount = new HashMap<>();
 
         // Create string to parse? gotta be a better way than this O.O
-        String toParse = "";
+        StringBuilder toParse = new StringBuilder();
         FindIterable<Document> organizer = mongoDB.getCollection(collectionId).find(new Document("createDate", new Document("$gt", date.toDate())));
         for (Document document : organizer) {
-            toParse += ". " + document.get("text");
+            toParse.append(". ").append(document.get("text"));
         }
 
 
         CharArraySet stopSet = new CharArraySet(0,true);
         stopSet.addAll(StopAnalyzer.ENGLISH_STOP_WORDS_SET);
         stopSet.addAll(StopWords.stopWords);
-        for (String word : mongoDB.findKeywordsByCollectionId(collectionId)) {
-            stopSet.add(word);
-        }
+        stopSet.addAll(mongoDB.findKeywordsByCollectionId(collectionId));
 
-        Reader reader = new StringReader(toParse);
+        Reader reader = new StringReader(toParse.toString());
         Analyzer analyzer = new StandardAnalyzer(stopSet);
         TokenStream ts = new ShingleFilter(analyzer.tokenStream("text", reader), 3);
         CharTermAttribute charTermAttribute = ts.addAttribute(CharTermAttribute.class);

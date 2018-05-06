@@ -1,12 +1,12 @@
-package me.melonade.visualSeries.mongo;
+package me.melonade.collections.mongo;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import me.melonade.visualSeries.conf.AppConfig;
-import me.melonade.visualSeries.exceptions.CollectionException;
-import me.melonade.visualSeries.models.CollectionOrganizerModel;
+import me.melonade.collections.conf.AppConfig;
+import me.melonade.collections.exceptions.CollectionException;
+import me.melonade.collections.models.CollectionOrganizerModel;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class MongoDB {
         return database.getCollection(collectionName);
     }
 
-    public String findCollectionIdByKeywords(List<String> keywords) {
+    private String findCollectionIdByKeywords(List<String> keywords) {
         String collectionId = null;
         FindIterable<Document> organizer = collectionOrganizer.find(new Document("keywords", keywords));
         for (Document doc : organizer) {
@@ -70,7 +70,7 @@ public class MongoDB {
     public List<CollectionOrganizerModel> listCollectionOrganizer() {
         FindIterable<Document> organizer = collectionOrganizer.find();
 
-        List<CollectionOrganizerModel> modelList = new ArrayList<CollectionOrganizerModel>();
+        List<CollectionOrganizerModel> modelList = new ArrayList<>();
         for (Document doc : organizer) {
             CollectionOrganizerModel model = parseCollectionOrganizer(doc);
             modelList.add(model);
@@ -80,7 +80,7 @@ public class MongoDB {
 
     private CollectionOrganizerModel parseCollectionOrganizer(Document doc) {
         CollectionOrganizerModel model = new CollectionOrganizerModel();
-        List<String> keywords = new ArrayList<String>();
+        List<String> keywords = new ArrayList<>();
         for (String word : (List<String>) doc.get("keywords"))
             keywords.add(StringUtils.capitalize(word));
 

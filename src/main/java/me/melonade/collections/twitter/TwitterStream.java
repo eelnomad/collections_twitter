@@ -1,11 +1,11 @@
-package me.melonade.visualSeries.twitter;
+package me.melonade.collections.twitter;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.UpdateOptions;
-import me.melonade.visualSeries.conf.AppConfig;
-import me.melonade.visualSeries.exceptions.CollectionException;
-import me.melonade.visualSeries.exceptions.TwitterStreamException;
-import me.melonade.visualSeries.mongo.MongoDB;
+import me.melonade.collections.conf.AppConfig;
+import me.melonade.collections.exceptions.CollectionException;
+import me.melonade.collections.exceptions.TwitterStreamException;
+import me.melonade.collections.mongo.MongoDB;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public class TwitterStream {
 
     @Autowired
     private MongoDB mongoDB;
-    private static Map<String, StatusListener> listeners = new HashMap<String, StatusListener>();
+    private static Map<String, StatusListener> listeners = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(TwitterStream.class.getSimpleName());
     private static twitter4j.TwitterStream twitterStream = null;
     private static FilterQuery filterQuery = new FilterQuery();
@@ -46,7 +46,7 @@ public class TwitterStream {
         twitterStream = new TwitterStreamFactory(configurationBuilder.build()).getInstance();
     }
 
-    public StatusListener findStatusListenerByCollectionId(String collectionId) {
+    private StatusListener findStatusListenerByCollectionId(String collectionId) {
         return listeners.get(collectionId);
     }
 
@@ -66,7 +66,7 @@ public class TwitterStream {
         listeners.clear();
     }
 
-    public void addListener(String collectionId) throws TwitterException, CollectionException {
+    public void addListener(String collectionId) throws CollectionException {
         //Connect to Mongo
         final MongoCollection collection = mongoDB.getCollection(collectionId);
         collection.createIndex(new Document("text","text").append("createDate",1));
@@ -95,7 +95,7 @@ public class TwitterStream {
                     );
                 //hashTags
                 if (status.getHashtagEntities().length > 0) {
-                    List<String> hashtags = new ArrayList<String>();
+                    List<String> hashtags = new ArrayList<>();
                     for (HashtagEntity hash : status.getHashtagEntities()) {
                         hashtags.add(hash.getText());
                     }
@@ -143,12 +143,12 @@ public class TwitterStream {
         twitterStream.filter(generateFilterQuery());
     }
 
-    public FilterQuery generateFilterQuery() throws CollectionException {
+    private FilterQuery generateFilterQuery() throws CollectionException {
         HashSet<String> keywords = new HashSet<>();
         for (String collectionId : listeners.keySet()) {
-            mongoDB.findKeywordsByCollectionId(collectionId).stream().forEach(keywords::add);
+            keywords.addAll(mongoDB.findKeywordsByCollectionId(collectionId));
         }
-        filterQuery.track(keywords.toArray(new String[keywords.size()]))
+        filterQuery.track(keywords.toArray(new String[0]))
                 .language("en");  //If ever adding more languages, change this
         return filterQuery;
     }

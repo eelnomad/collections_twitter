@@ -1,4 +1,4 @@
-package me.melonade.visualSeries.exceptions;
+package me.melonade.collections.exceptions;
 
 /**
  * Created by damon on 8/25/2016.

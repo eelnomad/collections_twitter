@@ -1,9 +1,9 @@
-package me.melonade.visualSeries.controllers;
+package me.melonade.collections.controllers;
 
-import me.melonade.visualSeries.exceptions.CollectionException;
-import me.melonade.visualSeries.exceptions.TwitterStreamException;
-import me.melonade.visualSeries.mongo.MongoDB;
-import me.melonade.visualSeries.twitter.TwitterStream;
+import me.melonade.collections.exceptions.CollectionException;
+import me.melonade.collections.exceptions.TwitterStreamException;
+import me.melonade.collections.mongo.MongoDB;
+import me.melonade.collections.twitter.TwitterStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +41,14 @@ public class TwitterController {
             twitterStream.shutdown();
             mongoDB.setStreamOff();
         } catch (Exception e) {
+            System.out.println(e.toString());
         }
         // END: Addition to stop everything
         try {
             twitterStream.addListener(collectionId);
             mongoDB.setStreamOn(collectionId);
             return ResponseEntity.ok().build();
-        } catch (TwitterException | CollectionException e) {
+        } catch (CollectionException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
@@ -86,6 +87,7 @@ public class TwitterController {
         try {
             twitterStream.shutdown(collectionId);
         } catch (TwitterStreamException e){
+            System.out.println(e.toString());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }

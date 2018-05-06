@@ -1,4 +1,4 @@
-package me.melonade.visualSeries;
+package me.melonade.collections;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;

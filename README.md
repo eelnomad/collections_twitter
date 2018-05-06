@@ -1,27 +1,30 @@
-# Visual Series - Twitter
-Quite possibly the only one in the series!
+# Collections - Twitter
 
-# Purpose
-Assist in the visualization of tweets pertaining to chosen keywords.
+##### A user friendly UI to easily gather collections of tweets by keyword and store them inside MongoDB.
 
-# Status
-Tweet Collection - Done
+### Requirements
+- NPM
+- MongoDB
+- Twitter API Credentials
 
-Ngram3 Frequency Calculations - Done
+### Status
+- [x] Tweet Collection System
+- [ ] Presentable Front-End
+- [ ] Stats API*
+- [ ] 
 
-Ngram Frequency Visualization - In Progress
+*Stats API will remain unsupported for the foreseeable future.
 
-# Usage
-Compile and generate a application.properties file with the following variables:
+## Usage
+### Application Properties
+twitter.authentication.consumerKey=  
+twitter.authentication.consumerSecret=  
+twitter.authentication.accessToken=  
+twitter.authentication.accessTokenSecret=  
+mongo.server=  
+mongo.database=  
 
-twitter.authentication.consumerKey=
-
-twitter.authentication.consumerSecret=
-
-twitter.authentication.accessToken=
-
-twitter.authentication.accessTokenSecret=
-
-mongo.server=
-
-mongo.database=
+### Setup Process
+- Run npm build
+- Compile
+- Execute

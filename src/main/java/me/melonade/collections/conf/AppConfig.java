@@ -1,4 +1,4 @@
-package me.melonade.visualSeries.conf;
+package me.melonade.collections.conf;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
