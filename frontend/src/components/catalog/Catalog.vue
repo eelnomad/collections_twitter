@@ -1,10 +1,10 @@
 <template>
-  <div id="catalog">
-    <div id="catalog-header">
+  <div id='catalog'>
+    <div id='catalog-header'>
       <h1>This will be a page with cards for each collection available.</h1>
     </div>
-    <div id="catalog-cards">
-      <catalog-card v-for="card in cards" :key="card._id" :collection="card">
+    <div id='catalog-cards'>
+      <catalog-card v-for='card in cards' :key='card._id' :collection='card'>
       </catalog-card>
     </div>
   </div>
@@ -29,42 +29,43 @@ export default {
     // })
     this.cards = [
       {
-        '_id': 'pizza',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: true,
-        desc: 'Testing'
+        '_id': '58646d4762f1c546d4d9973b',
+        'keywords': [
+          'Clinton',
+          'Democrat',
+          'Donald',
+          'Hillary',
+          'Republican',
+          'Trump'
+        ],
+        'desc': '2016 Election',
+        'activeFlag': true
       },
       {
-        '_id': 'pizza1',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: false,
-        desc: 'TestingTestingTestingTestingTestingTestingTesting'
+        '_id': '5af77e1c5df0a30b38445f74',
+        'keywords': [
+          'Ice',
+          'Lol',
+          'Me',
+          'You'
+        ],
+        'desc': 'test',
+        'activeFlag': false
       },
       {
-        '_id': 'pizza2',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: false,
-        desc: 'Testing'
-      },
-      {
-        '_id': 'pizza3',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: false,
-        desc: 'Testing'
-      },
-      {
-        '_id': 'pizza4',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: false,
-        desc: 'Testing'
-      },
-      {
-        '_id': 'pizza5',
-        keywords: ['nice', 'no', 'ice', 'yay'],
-        activeFlag: false,
-        desc: 'Testing'
+        '_id': '5af77f4b5df0a30b38445f75',
+        'keywords': [
+          'Beef',
+          'Chicken',
+          'Fish',
+          'Lamb'
+        ],
+        'desc': 'test2',
+        'activeFlag': false
       }
     ]
+  },
+  methods: {
   },
   components: {
     CatalogCard
@@ -72,7 +73,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 #catalog {
   margin-bottom: 120px;
@@ -83,6 +84,7 @@ export default {
 #catalog-cards {
   display: flex;
   flex-wrap: wrap;
+  padding: 0 50px;
 }
 h1, h2 {
   font-weight: normal;
