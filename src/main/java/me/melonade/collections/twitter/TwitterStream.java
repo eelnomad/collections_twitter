@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.*;
+import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.*;
@@ -33,7 +34,7 @@ public class TwitterStream {
 
     //Starts a TwitterStream, should happen only once and stay open for the duration of the run
     @Autowired
-    public TwitterStream(AppConfig properties) {
+    public TwitterStream(AppConfig properties) throws TwitterException {
         //Authentication
         ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.setOAuthConsumerKey(properties.getConsumerKey())
@@ -42,8 +43,14 @@ public class TwitterStream {
                 .setOAuthAccessTokenSecret(properties.getAccessTokenSecret())
                 .setJSONStoreEnabled(true);
 
+        Configuration conf = configurationBuilder.build();
+
+        Twitter twitter = new TwitterFactory(conf).getInstance();
+        User user = twitter.verifyCredentials();
+
         //Make TwitterStream
-        twitterStream = new TwitterStreamFactory(configurationBuilder.build()).getInstance();
+        twitterStream = new TwitterStreamFactory(conf).getInstance();
+
     }
 
     private StatusListener findStatusListenerByCollectionId(String collectionId) {

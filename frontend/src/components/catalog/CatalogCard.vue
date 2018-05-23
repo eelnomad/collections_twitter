@@ -1,8 +1,9 @@
 <template>
-  <div id="catalog-card" :class="classes" :tabindex=0 @focus="toggleFocus()" @blur="toggleFocus()" v-on:click="animateScroll()">
+  <div id="catalog-card" @click="$emit('selection', collection._id)">
     <h1> {{collection.desc}} </h1>
+    <!-- <icon name="spinner" pulse v-if="active" scale=2></icon> -->
     <ul>
-      <li v-for="keyword in keywords" :key="keyword">{{keyword}}</li>
+      <li v-for="keyword in collection.keywords" :key="keyword">{{keyword}}</li>
     </ul>
   </div>
 </template>
@@ -13,11 +14,6 @@ export default {
   props: ['collection'],
   data () {
     return {
-      mongo_id: this.collection._id,
-      desc: this.collection.desc,
-      active: this.collection.activeFlag,
-      selected: false,
-      keywords: this.collection.keywords
     }
   },
   created () {
@@ -27,19 +23,9 @@ export default {
   methods: {
     toggleFocus: function () {
       this.selected = !this.selected
-    },
-    animateScroll: function () {
-      console.log(this.$el)
     }
   },
   computed: {
-    classes: function () {
-      return {
-        'in-focus': this.selected,
-        'no-focus': !this.active && !this.selected,
-        active: this.active && !this.selected
-      }
-    }
   }
 }
 </script>
@@ -47,42 +33,34 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #catalog-card {
-  height: 200px;
-  flex: 1 0 300px;
-  margin: 5px;
-  padding: 0px 30px;
-  border-radius: 10px;
-  box-shadow: 0 1px 1px #777777;
+  margin: 10px 5px 10px 5px;
+  padding: 0px 30px 20px 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #DDDDDD;
+  background-color: #EEEEEE;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   outline: none;
+  z-index: 99;
 }
 
-.in-focus {
-  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
-  background-color: #FFEAEE;
-}
-.no-focus {
-  background-color: #EEEEEE;
-}
-
-.active {
-  background-color: #FFDAEE;
+#catalog-card.in-focus {
+  background-color: pink;
 }
 
 h1, h2 {
   font-weight: normal;
+  width: 200px;
 }
 ul {
   list-style-type: none;
   padding: 0;
-  height: 100px;
-  overflow-y: hidden;
-  background-color: gray;
 }
 li {
+  margin: 10px 0;
 }
 a {
   color: #42b983;
