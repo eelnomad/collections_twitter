@@ -4,7 +4,7 @@
       <h1>{{ $route.name }}</h1>
     </div>
     <div class="button-bar">
-      <div class="button" @click="newCollection()">
+      <div :class="[keywords.length != 0 ? 'button' : 'in-active-button']" @click="newCollection()" :disabled="keywords.length == 0">
         <h2>CREATE</h2>
       </div>
       <router-link class="button" :to="{ path: '/' }">
@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     newCollection: function () {
+      this.addKeyword()
       this.$http.put('api/new', {}, {
         params: {
           keywords: this.keywords.join(','),
@@ -59,7 +60,7 @@ export default {
     addKeyword: function () {
       this.word.split(',').forEach(word => {
         var w = word.trim()
-        if (w === '') return alert('No empty keywords allowed')
+        if (w === '') return ''
         if (this.keywords.indexOf(w) !== -1) return alert('Keyword already exists')
         this.keywords.push(w)
       })
