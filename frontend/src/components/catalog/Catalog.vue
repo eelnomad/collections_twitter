@@ -65,172 +65,172 @@ export default {
   },
   methods: {
     listCollection: function () {
-      // this.$http.get('/api/list/collections').then(response => {
-      //   this.$set(this, 'cards', response.data)
-      // }).catch(error => {
-      //   console.log(error)
-      // })
+      this.$http.get('/api/list/collections').then(response => {
+        this.$set(this, 'cards', response.data)
+      }).catch(error => {
+        console.log(error)
+      })
 
-      this.cards = [
-        {
-          '_id': '586c21aac0c8fa262cbc7524',
-          'keywords': [
-            'Hot chocolate',
-            'Magi',
-            'Milky way',
-            'Passionate chocolate',
-            'Rebbeca',
-            'Sinbad',
-            'Trollhunter'
-          ],
-          'desc': 'Old Woman',
-          'activeFlag': false
-        },
-        {
-          '_id': '586edb3cc0c8fa16947e1745',
-          'keywords': [
-            'Cashmere',
-            'Dress',
-            'Jeans',
-            'Sweater'
-          ],
-          'desc': 'Fashion',
-          'activeFlag': false
-        },
-        {
-          '_id': '586edcc2c0c8fa16947e1747',
-          'keywords': [
-            'Activia',
-            'Chobani',
-            'Dannon',
-            'Light n\' fit',
-            'Oikos',
-            'Yogurt',
-            'Yoplait'
-          ],
-          'desc': 'Yogurt',
-          'activeFlag': true
-        },
-        {
-          '_id': '586ee002c0c8fa16947e1748',
-          'keywords': [
-            'Cowboys',
-            'Football',
-            'Giants',
-            'Nfl',
-            'Pats',
-            'Superbowl'
-          ],
-          'desc': 'Sports',
-          'activeFlag': false
-        },
-        {
-          '_id': '586ee2efc0c8fa26988d69e4',
-          'keywords': [
-            'Dove',
-            'Garnier',
-            'Loreal',
-            'Maybelline',
-            'Milk',
-            'Nars'
-          ],
-          'desc': 'Beauty',
-          'activeFlag': false
-        },
-        {
-          '_id': '586ee4a5c0c8fa26988d69e5',
-          'keywords': [
-            'Absolut',
-            'Bruchladder',
-            'Cointreau',
-            'Cointreau noir',
-            'Hennessy',
-            'Louis xiii',
-            'Mount gay',
-            'Remy',
-            'Remy xo',
-            'Skyy',
-            'Vsop'
-          ],
-          'desc': 'Booooze',
-          'activeFlag': false
-        },
-        {
-          '_id': '5873b1bfd48fa71f9c47faed',
-          'keywords': [
-            'Go home',
-            'Home sweet home',
-            'Immigrate',
-            'Move'
-          ],
-          'desc': 'Canada',
-          'activeFlag': false
-        },
-        {
-          '_id': '5873ec2bd48fa70fe8dbbf91',
-          'keywords': [
-            'Mountain bicycle',
-            'Mountain bike',
-            'Specialized bike',
-            'Stumpjumper'
-          ],
-          'desc': 'Specialized Bike',
-          'activeFlag': false
-        },
-        {
-          '_id': '58740297ad251a0f5878d630',
-          'keywords': [
-            'Clinton',
-            'Democrat',
-            'Donald',
-            'Hillary',
-            'Republican',
-            'Trump'
-          ],
-          'desc': '2016 Election',
-          'activeFlag': false
-        },
-        {
-          '_id': '58866b8d5fae32135c39292c',
-          'keywords': [
-            'Cheese',
-            'Pepperoni',
-            'Tomato sauce',
-            'Vegan cheese'
-          ],
-          'desc': 'Pizza',
-          'activeFlag': false
-        },
-        {
-          '_id': '5abe8891d4b46f2ef834509e',
-          'keywords': [
-            'Southeast asia oil shipping'
-          ],
-          'desc': 'Oil Shipping',
-          'activeFlag': false
-        },
-        {
-          '_id': '5abe8f2dd4b46f2ef834509f',
-          'keywords': [
-            'Brownies',
-            'Pizza',
-            'Potato chips'
-          ],
-          'desc': 'Not-so Guilty Pleasures',
-          'activeFlag': false
-        },
-        {
-          '_id': '5abe9f70d4b46f269039495f',
-          'keywords': [
-            'Happy hour',
-            'Lime',
-            'Margarita',
-            'Tequilla'
-          ],
-          'desc': 'wednesday',
-          'activeFlag': false
-        }
-      ]
+      // this.cards = [
+      //   {
+      //     '_id': '586c21aac0c8fa262cbc7524',
+      //     'keywords': [
+      //       'Hot chocolate',
+      //       'Magi',
+      //       'Milky way',
+      //       'Passionate chocolate',
+      //       'Rebbeca',
+      //       'Sinbad',
+      //       'Trollhunter'
+      //     ],
+      //     'desc': 'Old Woman',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '586edb3cc0c8fa16947e1745',
+      //     'keywords': [
+      //       'Cashmere',
+      //       'Dress',
+      //       'Jeans',
+      //       'Sweater'
+      //     ],
+      //     'desc': 'Fashion',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '586edcc2c0c8fa16947e1747',
+      //     'keywords': [
+      //       'Activia',
+      //       'Chobani',
+      //       'Dannon',
+      //       'Light n\' fit',
+      //       'Oikos',
+      //       'Yogurt',
+      //       'Yoplait'
+      //     ],
+      //     'desc': 'Yogurt',
+      //     'activeFlag': true
+      //   },
+      //   {
+      //     '_id': '586ee002c0c8fa16947e1748',
+      //     'keywords': [
+      //       'Cowboys',
+      //       'Football',
+      //       'Giants',
+      //       'Nfl',
+      //       'Pats',
+      //       'Superbowl'
+      //     ],
+      //     'desc': 'Sports',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '586ee2efc0c8fa26988d69e4',
+      //     'keywords': [
+      //       'Dove',
+      //       'Garnier',
+      //       'Loreal',
+      //       'Maybelline',
+      //       'Milk',
+      //       'Nars'
+      //     ],
+      //     'desc': 'Beauty',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '586ee4a5c0c8fa26988d69e5',
+      //     'keywords': [
+      //       'Absolut',
+      //       'Bruchladder',
+      //       'Cointreau',
+      //       'Cointreau noir',
+      //       'Hennessy',
+      //       'Louis xiii',
+      //       'Mount gay',
+      //       'Remy',
+      //       'Remy xo',
+      //       'Skyy',
+      //       'Vsop'
+      //     ],
+      //     'desc': 'Booooze',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '5873b1bfd48fa71f9c47faed',
+      //     'keywords': [
+      //       'Go home',
+      //       'Home sweet home',
+      //       'Immigrate',
+      //       'Move'
+      //     ],
+      //     'desc': 'Canada',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '5873ec2bd48fa70fe8dbbf91',
+      //     'keywords': [
+      //       'Mountain bicycle',
+      //       'Mountain bike',
+      //       'Specialized bike',
+      //       'Stumpjumper'
+      //     ],
+      //     'desc': 'Specialized Bike',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '58740297ad251a0f5878d630',
+      //     'keywords': [
+      //       'Clinton',
+      //       'Democrat',
+      //       'Donald',
+      //       'Hillary',
+      //       'Republican',
+      //       'Trump'
+      //     ],
+      //     'desc': '2016 Election',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '58866b8d5fae32135c39292c',
+      //     'keywords': [
+      //       'Cheese',
+      //       'Pepperoni',
+      //       'Tomato sauce',
+      //       'Vegan cheese'
+      //     ],
+      //     'desc': 'Pizza',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '5abe8891d4b46f2ef834509e',
+      //     'keywords': [
+      //       'Southeast asia oil shipping'
+      //     ],
+      //     'desc': 'Oil Shipping',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '5abe8f2dd4b46f2ef834509f',
+      //     'keywords': [
+      //       'Brownies',
+      //       'Pizza',
+      //       'Potato chips'
+      //     ],
+      //     'desc': 'Not-so Guilty Pleasures',
+      //     'activeFlag': false
+      //   },
+      //   {
+      //     '_id': '5abe9f70d4b46f269039495f',
+      //     'keywords': [
+      //       'Happy hour',
+      //       'Lime',
+      //       'Margarita',
+      //       'Tequilla'
+      //     ],
+      //     'desc': 'wednesday',
+      //     'activeFlag': false
+      //   }
+      // ]
     },
     runCollection: function () {
       this.$http.get('api/run', {
